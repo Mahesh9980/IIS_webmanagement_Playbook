@@ -1,0 +1,25 @@
+---
+
+  - name: "Create destination dir"
+    win_file: path='{{ destination_dir }}' state=directory
+
+  - name: "Copy Web Policy Agent ZIP file"
+    win_copy: src='{{ source_dir }}/{{ IIS_Agent_ZIP_File }}.zip' dest='{{ destination_dir }}'
+
+  - name: "Extract Web Policy Agent ZIP file"
+    win_unzip:
+      src: '{{ destination_dir }}/{{ IIS_Agent_ZIP_File }}.zip'
+      dest: '{{ destination_dir }}/{{ IIS_Agent_ZIP_File }}'
+
+  - name: "Copy config file"
+    win_template: src='{{ templates_dir }}/{{ config_file }}' dest='{{ destination_dir }}\{{ IIS_Agent_ZIP_File }}\web_agents\iis7_agent\\bin' force=yes
+
+  - name: "Install IIS Web policy Agent"
+    raw: cmd /c "cd {{ destination_dir }}\{{ IIS_Agent_ZIP_File }}\web_agents\iis7_agent\bin & cscript IIS7Admin.vbs -config {{ config_file }}"
+
+  - name: "Copy applicationHost.config file"
+    win_template: src='{{ templates_dir }}/{{ applicationHost_file }}' dest='{{ applicationHost_dir }}' force=yes
+
+  - name: "Restart IIS"
+    raw: iisreset
+

@@ -1,0 +1,30 @@
+---
+
+source_dir: './roles/openam_webagent_install/files'
+templates_dir: './roles/openam_webagent_install/templates'
+destination_dir: 'C:\Downloads'
+
+config_file: 'config.txt'
+IIS7Admin_VBS_File: 'IIS7Admin.vbs'
+IIS_Agent_ZIP_File: 'IIS-v7-WINNT-64-Agent-3.3.4'
+
+INSTALL_DIRECTORY: 'C:\Downloads\IIS-v7-WINNT-64-Agent-3.3.4\web_agents\iis7_agent'
+Web_Site_Identifier: 1
+AGENT_HOST: localhost
+AGENT_PREF_PORT: 80
+AM_SERVICES_HOST: 'openam.ctepl.com'
+AM_SERVICES_PORT: 8080
+AGENT_PROFILE_NAME: 'IISAgent1'
+AGENT_URL_PREFIX: 'http://localhost:80'
+
+DEBUG_LOGS_DIR: 'C:/Downloads/IIS-v7-WINNT-64-Agent-3.3.4/web_agents/iis7_agent/Identifier_1/logs/debug'
+AUDIT_LOGS_DIR: 'C:/Downloads/IIS-v7-WINNT-64-Agent-3.3.4/web_agents/iis7_agent/Identifier_1/logs/audit'
+AUDIT_LOG_FILENAME: 'amAgent_localhost.log'
+SERVER_DIR: 'C:/Downloads/IIS-v7-WINNT-64-Agent-3.3.4/web_agents/iis7_agent/iis7/cert'
+
+applicationHost_dir: C:\Windows\System32\inetsrv\config
+applicationHost_file: 'applicationHost.config'
+
+Process_Model_Identity: 'LocalSystem'
+Enable_32_bit: 'False'
+Recycling_Time: '00:00:00'
